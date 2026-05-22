@@ -28,9 +28,28 @@ jobs:
         run: uv pip install pyinstaller
 
       - name: Build executable
+        shell: pwsh
         run: |
-          .venv\Scripts\activate
-          pyinstaller --onefile --windowed --name Sherloq-Windows --collect-all tensorflow --collect-all keras --collect-all xgboost sherloq.py
+          .venv\Scripts\pyinstaller.exe `
+            --onefile --windowed --name Sherloq-Windows `
+            --collect-all tensorflow `
+            --collect-all keras `
+            --collect-all xgboost `
+            --collect-all PySide6 `
+            --collect-all matplotlib `
+            --collect-all scipy `
+            --collect-all sklearn `
+            --collect-all cv2 `
+            --collect-all rawpy `
+            --collect-all pywt `
+            --hidden-import tensorflow.compat.v1 `
+            --hidden-import PySide6.QtWebEngineWidgets `
+            --hidden-import joblib `
+            --add-data "gui/icons;gui/icons" `
+            --add-data "gui/models;gui/models" `
+            --add-data "gui/noiseprint/nets;gui/noiseprint/nets" `
+            --add-data "gui/pyexiftool/exiftool/windows;gui/pyexiftool/exiftool/windows" `
+            sherloq.py
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
