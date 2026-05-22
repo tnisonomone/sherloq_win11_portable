@@ -30,7 +30,7 @@ jobs:
       - name: Build executable
         run: |
           .venv\Scripts\activate
-          pyinstaller --onefile --windowed --name Sherloq-Windows --collect-all tensorflow --collect-all keras sherloq.py
+          pyinstaller --onefile --windowed --name Sherloq-Windows --collect-all tensorflow --collect-all keras --collect-all xgboost sherloq.py
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
