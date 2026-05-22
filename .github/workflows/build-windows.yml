@@ -21,6 +21,9 @@ jobs:
       - name: Install dependencies
         run: uv pip install -r gui/requirements.txt
 
+      - name: Install Windows libmagic DLL
+        run: uv pip install python-magic-bin
+
       - name: Install PyInstaller
         run: uv pip install pyinstaller
 
